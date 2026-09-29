@@ -1,0 +1,18 @@
+name: gate
+
+# Runs on every push. The repo has zero dependencies, so there is no
+# install step — `npm run` works without node_modules.
+on: push
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Lint and test
+        run: npm run gate
